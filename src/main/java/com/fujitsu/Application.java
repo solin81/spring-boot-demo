@@ -1,8 +1,9 @@
 package com.fujitsu;
 
 import jdk.nashorn.internal.runtime.regexp.joni.ApplyCaseFoldArg;
-import org.springframework.boot.Banner;
-import org.springframework.boot.SpringApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
@@ -12,7 +13,9 @@ import org.springframework.context.ApplicationListener;
 //@Configuration
 //@ComponentScan
 @SpringBootApplication
-public class Application {
+public class Application implements ApplicationRunner, CommandLineRunner {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) throws Exception {
         // 1 - start app directly
@@ -26,6 +29,16 @@ public class Application {
                 .bannerMode(Banner.Mode.OFF)
                 .run(args);
 */
+    }
+
+    @Override
+    public void run(ApplicationArguments applicationArguments) throws Exception {
+        LOGGER.info("Greetings from run(ApplicationArguments) method from interface ApplicationRunner");
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        LOGGER.info("Greetings from run(String...) method from interface CommandLineRunner");
     }
 
     static class LocalAppListerner implements ApplicationListener {
