@@ -15,15 +15,17 @@ import org.springframework.context.ApplicationListener;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        // 1
-//        SpringApplication.run(Application.class, args);
+        // 1 - start app directly
+        SpringApplication.run(Application.class, args);
 
-        // 2
+        // 2 - start by using builder interface
+/*
         new SpringApplicationBuilder()
                 .sources(Application.class)
                 .listeners(new LocalAppListerner())
                 .bannerMode(Banner.Mode.OFF)
                 .run(args);
+*/
     }
 
     static class LocalAppListerner implements ApplicationListener {
